@@ -1,11 +1,27 @@
 <template>
   <h1>{{ title }}</h1>
   <div v-if="showModel">
-    <Model :header="header" :text="text"  theme="sale" @close="toggleModel" />
+    <Model :header="header" :text="text" theme="sale" @close="toggleModel">
+    <template v-slot:links>
+      <a href="#">Sign Up</a>
+      <a href="#">Login</a>
+    </template>
+      <h1>Sign up for the giveaway!</h1>
+      <p>Hurry Up!</p>
+    </Model>
+  </div>
+  <div v-if="showModelTwo">
+  <Model :header="header" :text="text" theme="sale" @close="toggleModelTwo">
+    <template v-slot:secondLink>
+      <a href="#">Grab it!</a>
+    </template>
+    <h1>Second Giveaway for the week</h1>
+    <p>take it or leave it</p>
+  </Model>
   </div>
   <p>Welcome...</p>
   <button @click="toggleModel">Open Model</button>
-  
+  <button @click="toggleModelTwo">Open secondModel</button>
 </template>
 
 <script>
@@ -20,7 +36,8 @@ export default {
       title: "My first vue App :)",
       header: "Sign up for the giveaway!",
       text: "Hurry Up!",
-      showModel: false
+      showModel: false,
+      showModelTwo: false,
     };
   },
   methods: {
@@ -32,7 +49,10 @@ export default {
     },
     toggleModel() {
       this.showModel = !this.showModel;
-    }
+    },
+    toggleModelTwo() {
+      this.showModelTwo = !this.showModelTwo;
+    },
   },
   components: { Model },
 };

@@ -1,10 +1,16 @@
 <template>
-  <div class="backdrop" ref="backdrop" @click="closeModel">
+  <div class="backdrop" ref="backdrop" @click.self="closeModel">
     <div class="model" :class="{ sale: theme === 'sale' }">
       <!-- <i class="fa fa-times" aria-hidden="true" @click="handleHide"></i> -->
-
-      <h1>{{ header }}</h1>
-      <p>{{ text }}</p>
+        <slot></slot>
+        <div class="action">
+            <slot name="links"></slot>
+        </div>
+        <div class="action">
+            <slot name="secondLink"></slot>
+        </div>
+      <!-- <h1>{{ header }}</h1>
+      <p>{{ text }}</p> -->
     </div>
   </div>
 </template>
@@ -43,10 +49,18 @@ export default {
   padding: 0;
 }
 
-.model i {
-  display: flex;
-  justify-content: flex-end;
-  cursor: pointer;
+.model .action{
+    text-align: center;
+    margin: 30px 0 10px 0;
+}
+
+.model .action a {
+    color: #333;
+    padding: 8px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    text-decoration: none;
+    margin: 10px;
 }
 
 .model.sale {
@@ -56,5 +70,12 @@ export default {
 
 .model.sale h1 {
   color: white;
+}
+
+.model.sale.action {
+    color: white;
+}
+.model.sale.action a{
+    color: #fff;
 }
 </style>
