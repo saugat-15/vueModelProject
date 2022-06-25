@@ -1,7 +1,7 @@
 <template>
   <h1>{{ title }}</h1>
   <div v-if="showModel">
-    <Model :header="header" :text="text" theme="sale" @close="toggleModel">
+    <Model theme="" @close="toggleModel">
     <template v-slot:links>
       <a href="#">Sign Up</a>
       <a href="#">Login</a>
@@ -10,15 +10,15 @@
       <p>Hurry Up!</p>
     </Model>
   </div>
-  <div v-if="showModelTwo">
-  <Model :header="header" :text="text" theme="sale" @close="toggleModelTwo">
+  <Teleport to=".models" v-if="showModelTwo">
+  <Model theme="" @close="toggleModelTwo">
     <template v-slot:secondLink>
-      <a href="#">Grab it!</a>
+      <a href="#" >Grab it!</a>
     </template>
     <h1>Second Giveaway for the week</h1>
     <p>take it or leave it</p>
   </Model>
-  </div>
+  </Teleport>
   <p>Welcome...</p>
   <button @click="toggleModel">Open Model</button>
   <button @click="toggleModelTwo">Open secondModel</button>
@@ -34,8 +34,6 @@ export default {
   data() {
     return {
       title: "My first vue App :)",
-      header: "Sign up for the giveaway!",
-      text: "Hurry Up!",
       showModel: false,
       showModelTwo: false,
     };
@@ -59,7 +57,7 @@ export default {
 </script>
 
 <style>
-#app {
+#app, .models {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

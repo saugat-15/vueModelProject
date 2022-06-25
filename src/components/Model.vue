@@ -7,7 +7,7 @@
             <slot name="links"></slot>
         </div>
         <div class="action">
-            <slot name="secondLink"></slot>
+            <slot name="secondLink" @click="consoleLog"></slot>
         </div>
       <!-- <h1>{{ header }}</h1>
       <p>{{ text }}</p> -->
@@ -21,7 +21,7 @@ export default {
   methods: {
       closeModel() {
         this.$emit('close')
-    },
+      },
   },
 };
 </script>
